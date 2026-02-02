@@ -1,0 +1,57 @@
+1. Classificador de Idade
+python
+idade = int(input("Digite sua idade: "))
+
+if idade <= 12:
+    print("Categoria: Criança")
+elif idade <= 17:
+    print("Categoria: Adolescente")
+elif idade <= 59:
+    print("Categoria: Adulto")
+else:
+    print("Categoria: Idoso")
+2. Calculadora de IMC
+python
+peso = float(input("Peso (kg): "))
+altura = float(input("Altura (m): "))
+imc = peso / (altura ** 2)
+
+if imc < 18.5:
+    res = "Abaixo do peso"
+elif imc < 25:
+    res = "Peso normal"
+elif imc < 30:
+    res = "Sobrepeso"
+else:
+    res = "Obeso"
+
+print(f"IMC: {imc:.2f} - Classificação: {res}")
+
+3. Conversor de Temperatura
+python
+temp = float(input("Temperatura: "))
+origem = input("De (C, F, K): ").upper()
+destino = input("Para (C, F, K): ").upper()
+if origem == "F":
+    c = (temp - 32) * 5/9
+elif origem == "K":
+    c = temp - 273.15
+else:
+    c = temp
+if destino == "F":
+    final = (c * 9/5) + 32
+elif destino == "K":
+    final = c + 273.15
+else:
+    final = c
+
+print(f"Resultado: {final:.2f} {destino}")
+
+4. Verificador de Ano Bissexto
+python
+ano = int(input("Digite o ano: "))
+
+if (ano % 4 == 0 and ano % 100 != 0) or (ano % 400 == 0):
+    print(f"{ano} é um ano bissexto.")
+else:
+    print(f"{ano} não é um ano bissexto.")
