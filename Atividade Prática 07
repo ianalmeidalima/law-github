@@ -1,0 +1,54 @@
+1. Estatísticas de CSV (Pandas)
+import pandas as pd
+
+try:
+    df = pd.read_csv('dados.csv')
+    media = df['tempo_execucao'].mean()
+    soma = df['tempo_execucao'].sum()
+    print(f"Média: {media:.2f} | Total: {soma:.2f}")
+except FileNotFoundError:
+    print("Erro: O arquivo 'dados.csv' não foi encontrado.")
+except Exception as e:
+    print(f"Erro na leitura: {e}")
+2. Criar Arquivo Tabular (.txt)
+dados = [
+    {"nome": "Ana", "idade": 25, "cidade": "SP"},
+    {"nome": "Bruno", "idade": 30, "cidade": "RJ"}
+]
+
+nome_arquivo = input("Nome do arquivo para salvar (ex: pessoas.txt): ")
+
+try:
+    with open(nome_arquivo, 'w', encoding='utf-8') as f:
+        f.write(f"{'Nome':<15} {'Idade':<10} {'Cidade':<15}\n")
+        f.write("-" * 40 + "\n")
+        for p in dados:
+            f.write(f"{p['nome']:<15} {p['idade']:<10} {p['cidade']:<15}\n")
+    print(f"Sucesso! Arquivo '{nome_arquivo}' criado.")
+except Exception:
+    print("Falha ao salvar o arquivo.")
+3. Leitor de Linhas de Texto
+caminho = input("Digite o nome/caminho do arquivo .txt: ")
+
+try:
+    with open(caminho, 'r', encoding='utf-8') as arquivo:
+        for linha in arquivo:
+            print(linha.strip())
+except FileNotFoundError:
+    print("Erro: Arquivo não encontrado.")
+4. Manipulação de JSON
+import json
+
+pessoa = {"nome": "Carlos", "idade": 45, "cidade": "Curitiba"}
+arquivo_json = "dados.json"
+
+try:
+    with open(arquivo_json, 'w') as f:
+        json.dump(pessoa, f, indent=4)
+    
+    with open(arquivo_json, 'r') as f:
+        dados_lidos = json.load(f)
+        print("Dados do JSON:", dados_lidos)
+        
+except (FileNotFoundError, IOError):
+    print("Falha: O arquivo não existe ou ocorreu um erro ao salvar.")
