@@ -1,0 +1,69 @@
+1. Gerador de Senhas Seguras
+import random
+import string
+
+def gerar_senha(tamanho):
+    caracteres = string.ascii_letters + string.digits + string.punctuation
+    senha = "".join(random.choice(caracteres) for _ in range(tamanho))
+    return senha
+try:
+    comprimento = int(input("Digite o tamanho da senha desejada: "))
+    if comprimento < 4:
+        print("Para sua segurança, use ao menos 4 caracteres.")
+    else:
+        print(f"Sua nova senha segura: {gerar_senha(comprimento)}")
+except ValueError:
+    print("Erro: Por favor, digite um número inteiro válido.")
+2. Usuário Fictício (API Random User)
+import requests
+
+def buscar_usuario():
+    try:
+        response = requests.get("https://randomuser.me/api/")
+        response.raise_for_status() # Verifica erros de conexão
+        dados = response.json()["results"][0]
+        
+        nome = f"{dados['name']['first']} {dados['name']['last']}"
+        email = dados['email']
+        pais = dados['location']['country']
+        
+        print(f"Nome: {nome}\nE-mail: {email}\nPaís: {pais}")
+    except:
+        print("Falha na conexão com o serviço de usuários.")
+
+buscar_usuario()
+3. Consulta de CEP (API ViaCEP)
+import requests
+
+cep = input("Digite o CEP (apenas números): ")
+
+try:
+    response = requests.get(f"https://viacep.com.br{cep}/json/")
+    dados = response.json()
+    
+    if "erro" in dados:
+        print("Erro: CEP não encontrado.")
+    else:
+        print(f"Logradouro: {dados['logradouro']}")
+        print(f"Bairro: {dados['bairro']}")
+        print(f"Cidade: {dados['localidade']}")
+        print(f"Estado: {dados['uf']}")
+except:
+    print("Falha na requisição. Verifique sua conexão ou o CEP digitado.")
+4. Cotação de Moedas (AwesomeAPI)
+import requests
+
+moeda = input("Digite o código da moeda (ex: USD, EUR, BTC): ").upper()
+
+try:
+    url = f"https://economia.awesomeapi.com.br{moeda}-BRL"
+    response = requests.get(url)
+    dados = response.json()[f"{moeda}BRL"]
+    
+    print(f"--- Cotação {moeda}/BRL ---")
+    print(f"Valor Atual: R$ {float(dados['bid']):.2f}")
+    print(f"Máxima: R$ {float(dados['high']):.2f}")
+    print(f"Mínima: R$ {float(dados['low']):.2f}")
+    print(f"Atualizado em: {dados['create_date']}")
+except:
+    print("Erro: Moeda não encontrada ou falha na requisição.")
