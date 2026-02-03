@@ -1,0 +1,19 @@
+1: Conversão de Moedas
+reais = 100.00
+dolar = round(reais / 5.20, 2)
+euro = round(reais / 6.15, 2)
+print(f"Dólar: US$ {dolar} | Euro: € {euro}")
+2: Cálculo de Desconto
+produto = "Camiseta"
+preco, desconto = 50.00, 20
+valor_desconto = preco * (desconto / 100)
+preco_final = preco - valor_desconto
+print(f"Produto: {produto} | Desconto: R$ {valor_desconto:.2f} | Total: R$ {preco_final:.2f}")
+3: Média Aritmética
+notas = [7.5, 8.0, 6.5]
+media = sum(notas) / len(notas)
+print(f"Notas: {notas} | Média Final: {media:.2f}")
+4: Consumo de Combustível
+distancia, litros = 300, 25
+consumo = distancia / litros
+print(f"Viagem: {distancia}km com {litros}L | Consumo: {consumo:.2f} km/l")
